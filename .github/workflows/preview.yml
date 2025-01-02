@@ -20,9 +20,9 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - id: install-loft-cli
-        uses: loft-sh/setup-loft@main
+        uses: loft-sh/setup-loft@v2
         with:
-          version: v4.2.0
+          version: v4.0.0
           url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your Loft access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
