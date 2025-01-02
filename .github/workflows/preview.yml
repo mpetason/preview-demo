@@ -23,7 +23,7 @@ jobs:
         uses: loft-sh/setup-loft@v2
         with:
           version: v4.2.1
-          url: ${{ secrets.LOFT_ENV_URL }}
+          url: https://bjecp32.loft.host
           # Specify your vCluster Platform access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
           # Optional if your vCluster Platform domain certificate is insecure
