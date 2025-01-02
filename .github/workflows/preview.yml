@@ -22,7 +22,7 @@ jobs:
       - id: install-loft-cli
         uses: loft-sh/setup-loft@v2
         with:
-          version: v3.2.4
+          version: v4.2.0
           url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your Loft access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
