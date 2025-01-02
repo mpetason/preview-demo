@@ -19,14 +19,14 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - id: install-loft-cli
-        uses: loft-sh/setup-loft@v2
+      - id: install-vcluster-cli
+        uses: loft-sh/setup-vcluster@main
         with:
-          version: v4.0.0
+          version: v0.21.1
           url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your Loft access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
 
       - id: create-vcluster
         run: |
-          loft create vcluster $REPO_NAME --project default --recreate
+          vcluster create vcluster $REPO_NAME --project default --recreate
