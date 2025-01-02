@@ -22,7 +22,7 @@ jobs:
       - name: Install vCluster CLI
         uses: loft-sh/setup-loft@v2
         with:
-          version: v3.0.0
+          version: v3.4.0
           url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your vCluster Platform access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
@@ -34,7 +34,7 @@ jobs:
           INGRESS_HOST=loft-preview-${{ github.event.pull_request.number }}.${{ secrets.LOFT_DOMAIN }}
 
           # Make sure to recreate if there is an already existing environment
-          vcluster pro create loft-preview-${{ github.event.pull_request.number }} --project preview --recreate
+          loft create loft-preview-${{ github.event.pull_request.number }} --project preview --recreate
 
           # Deploy the application here with an ingress
           helm repo add argo https://argoproj.github.io/argo-helm
