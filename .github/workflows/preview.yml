@@ -22,7 +22,7 @@ jobs:
       - name: Install vCluster CLI
         uses: loft-sh/setup-loft@v2
         with:
-          version: v3.4.0
+          version: v4.2.1
           url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your vCluster Platform access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
