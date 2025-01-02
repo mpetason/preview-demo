@@ -22,7 +22,7 @@ jobs:
       - id: install-vcluster-cli
         uses: loft-sh/setup-vcluster@main
         with:
-          version: v0.21.1
+          version: v0.21.2
           url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your Loft access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
