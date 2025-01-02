@@ -20,7 +20,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - id: install-loft-cli
-        uses: loft-sh/setup-loft@v2
+        uses: loft-sh/setup-loft@main
         with:
           version: v4.2.0
           url: ${{ secrets.LOFT_ENV_URL }}
