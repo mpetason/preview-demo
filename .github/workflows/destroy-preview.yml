@@ -8,6 +8,7 @@ on:
 
 jobs:
   destroy:
+    if: ${{ github.event.label.name == 'delete' }}
     runs-on: ubuntu-22.04
     permissions:
       id-token: write
