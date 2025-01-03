@@ -1,9 +1,9 @@
 name: create-vcluster
 
-on:
-  pull_request:
-    branches:
-      - main
+#on:
+#  pull_request:
+#    branches:
+#      - main
   
 env:
   REPO_NAME: ${{ github.event.repository.name }}
