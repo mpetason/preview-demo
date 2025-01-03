@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+    types: [labeled]
   
 env:
   REPO_NAME: ${{ github.event.repository.name }}
