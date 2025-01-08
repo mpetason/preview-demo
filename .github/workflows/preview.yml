@@ -1,34 +1,52 @@
-name: create-vcluster
+name: Create Preview Environment
 
+# Run for pull requests to our main branch
 on:
   pull_request:
     branches:
       - main
-    types: [labeled]
-  
-env:
-  REPO_NAME: ${{ github.event.repository.name }}
 
+# make sure the pipeline is only running once
+concurrency:
+  group: preview-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+# define a job that deploys the preview environment
 jobs:
-  create-vcluster:
-    if: ${{ github.event.label.name == 'delete' }}
-    runs-on: ubuntu-22.04
-    permissions:
-      id-token: write
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-      - id: checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
+      - name: checkout
+        uses: actions/checkout@v3
 
-      - id: install-vcluster-cli
-        uses: loft-sh/setup-vcluster@main
+      - name: Install vCluster CLI
+        uses: loft-sh/setup-loft@v2
         with:
-          version: v0.21.2
-          url: ${{ secrets.LOFT_ENV_URL }}
-          # Specify your Loft access key here
+          version: v3.0.0
+          url: https://url-to-your-loft-instance.com
+          # Specify your vCluster Platform access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
+          # Optional if your vCluster Platform domain certificate is insecure
+          #insecure: true
 
-      - id: create-vcluster
+      - name: Deploy Preview Environment
         run: |
-          vcluster platform create vcluster vcluster-preview-${{ github.event.pull_request.number }} --project default --recreate
+          INGRESS_HOST=loft-preview-${{ github.event.pull_request.number }}.my-preview-environments.com
+
+          # Make sure to recreate if there is an already existing environment
+          vcluster pro create loft-preview-${{ github.event.pull_request.number }} --project preview --recreate
+
+          # Deploy the application here with an ingress
+          helm repo add argo https://argoproj.github.io/argo-helm
+          helm install argocd argo/argo-cd --version 5.16.3 \
+                                            --create-namespace \
+                                            -n argocd \
+                                            --set server.ingress.enabled=true \
+                                            --set server.ingress.hosts={$INGRESS_HOST}
+
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          number: ${{ github.event.pull_request.number }}
+          header: release
+          message: |
+            Preview environment deployed at: http://loft-preview-${{ github.event.pull_request.number }}.my-preview-environments.com
