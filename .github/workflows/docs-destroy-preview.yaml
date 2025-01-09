@@ -15,14 +15,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install vCluster CLI
-        uses: loft-sh/setup-loft@v2
+        uses: ${{ secrets.LOFT_ENV_URL }}
         with:
-          version: v3.0.0
-          url: https://url-to-your-loft-instance.com
+          version: v0.21.2
+          url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your vCluster Platform access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
           #insecure: true
 
       - name: Destroy Preview Environment
         run: |
-          loft delete vcluster loft-preview-${{ github.event.pull_request.number }} --project preview
+          vcluster platform delete vcluster loft-preview-${{ github.event.pull_request.number }} --project default
