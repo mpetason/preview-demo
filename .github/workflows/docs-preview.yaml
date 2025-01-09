@@ -45,9 +45,10 @@ jobs:
                                             --set server.ingress.class=nginx \
                                             --set server.ingress.hosts={$INGRESS_HOST}
 
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - name: add-pr-link
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           number: ${{ github.event.pull_request.number }}
           header: release
           message: |
-            Preview environment deployed at: http://loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local
+            [Preview environment app link](https://${{ env.REPO_NAME}}-pr-${{ github.event.pull_request.number }}.${{ secrets.LOFT_DOMAIN }})
