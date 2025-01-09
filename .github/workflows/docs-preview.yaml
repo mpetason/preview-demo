@@ -20,10 +20,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install vCluster CLI
-        uses: loft-sh/setup-loft@v2
+        uses: loft-sh/setup-vcluster@main
         with:
-          version: v3.0.0
-          url: https://url-to-your-loft-instance.com
+          version: v0.21.2
+          url: ${{ secrets.LOFT_ENV_URL }}
           # Specify your vCluster Platform access key here
           access-key: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
           # Optional if your vCluster Platform domain certificate is insecure
@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy Preview Environment
         run: |
-          INGRESS_HOST=loft-preview-${{ github.event.pull_request.number }}.my-preview-environments.com
+          INGRESS_HOST=loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local
 
           # Make sure to recreate if there is an already existing environment
           vcluster pro create loft-preview-${{ github.event.pull_request.number }} --project preview --recreate
@@ -49,4 +49,4 @@ jobs:
           number: ${{ github.event.pull_request.number }}
           header: release
           message: |
-            Preview environment deployed at: http://loft-preview-${{ github.event.pull_request.number }}.my-preview-environments.com
+            Preview environment deployed at: http://loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local
