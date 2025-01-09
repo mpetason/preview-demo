@@ -42,7 +42,6 @@ jobs:
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
-                                            --set server.ingress.class=nginx \
                                             --set server.ingress.hosts={$INGRESS_HOST}
 
       - name: add-pr-link
