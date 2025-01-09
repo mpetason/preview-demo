@@ -42,6 +42,7 @@ jobs:
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
+                                            --set server.ingress.class=nginx \
                                             --set server.ingress.hosts={$INGRESS_HOST}
 
       - uses: marocchino/sticky-pull-request-comment@v2
