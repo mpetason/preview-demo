@@ -18,7 +18,7 @@ jobs:
       - name: Create PR Virtual Cluster
         env:
           NAME: pr-${{ github.event.pull_request.number }}-${{ github.sha }}-${{ github.run_id }}
-        run: vcluster create $NAME --project default
+        run: vcluster platform create vcluster $NAME --project default --template preview-template
       - name: Deploy Application
         run: kubectl apply -Rf ./my-app
       - name: Wait for Deployment
