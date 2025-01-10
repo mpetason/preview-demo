@@ -19,6 +19,8 @@ jobs:
         env:
           NAME: pr-${{ github.event.pull_request.number }}
         run: vcluster platform create vcluster $NAME --project default --template preview-template
+      - name: Check Out Repository Code
+        uses: actions/checkout@v4
       - name: Deploy Application
         run: kubectl apply -Rf ./my-app
       - name: Wait for Deployment
