@@ -26,10 +26,6 @@ metadata:
   name: hello-world
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - app.vcluster-demo.local
-    secretName: app-vcluster-demo-tls
   rules:
   - host: app.vcluster-demo.local
     http:
