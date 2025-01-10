@@ -40,11 +40,11 @@ jobs:
           vcluster platform create vcluster loft-preview-${{ github.event.pull_request.number }} --project default \
             --template preview-template \
             --link "GitHub PR=$PR_LINK" \
-            --link "Preview=https://$loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local" 
+            --link "Preview=https://loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local" 
 
           # Deploy the application here with an ingress
           helm repo add argo https://argoproj.github.io/argo-helm
-          helm install argocd argo/argo-cd --version 5.16.3 \
+          helm install argocd argo/argo-cd --version 7.7.13 \
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
