@@ -5,6 +5,9 @@ on:
     types: [labeled]
     branches:
       - "main"
+env:
+  PR_LINK: ${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}
+  
 jobs:
   my-app:
     if: ${{ github.event.label.name == 'preview' }}
@@ -22,7 +25,7 @@ jobs:
           NAME: pr-${{ github.event.pull_request.number }}
         run: vcluster platform create vcluster $NAME --project default \
               --template preview-template \
-              --link "GitHub PR=$PR_LINK" \
+              --link "GitHub PR=$PR_LINK"
       - name: Check Out Repository Code
         uses: actions/checkout@v4
       - name: Deploy Application
