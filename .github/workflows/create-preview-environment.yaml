@@ -14,7 +14,7 @@ jobs:
         env:
           LOFT_URL: ${{ secrets.LOFT_ENV_URL }}
           ACCESS_KEY: ${{ secrets.LOFT_PREVIEW_ACCESS_KEY }}
-        run: vcluster login $LOFT_URL --access-key $ACCESS_KEY
+        run: vcluster platform login $LOFT_URL --access-key $ACCESS_KEY
       - name: Create PR Virtual Cluster
         env:
           NAME: pr-${{ github.event.pull_request.number }}-${{ github.sha }}-${{ github.run_id }}
