@@ -57,4 +57,4 @@ jobs:
           number: ${{ github.event.pull_request.number }}
           header: release
           message: |
-            [Preview environment app link](loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local)
+            [Preview environment app link](https://loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local)
