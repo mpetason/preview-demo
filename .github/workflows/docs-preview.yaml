@@ -49,7 +49,7 @@ jobs:
                                             -n argocd \
                                             --set server.ingress.enabled=true \
                                             --set server.ingress.hosts={$INGRESS_HOST} \
-                                            --set server.ingress.hosts[0].host={$INGRESS_HOST},ingress.hosts[0].paths[0].path.backend.service.port=443
+                                            --set server.ingress.hosts[0].host.paths[0].path.backend.service.port=443
 
       - name: add-pr-link
         uses: marocchino/sticky-pull-request-comment@v2
