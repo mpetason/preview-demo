@@ -44,7 +44,7 @@ jobs:
 
           # Deploy the application here with an ingress
           helm repo add argo https://argoproj.github.io/argo-helm
-          helm install argocd argo/argo-cd --version 7.7.13 \
+          helm install argocd argo/argo-cd --version 5.16.3 \
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
