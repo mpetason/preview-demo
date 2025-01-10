@@ -48,8 +48,8 @@ jobs:
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
-                                            --set server.ingress.port=443 \
-                                            --set server.ingress.hosts={$INGRESS_HOST}
+                                            --set server.ingress.hosts={$INGRESS_HOST} \
+                                            --set server.ingress.hosts.paths.port=443
 
       - name: add-pr-link
         uses: marocchino/sticky-pull-request-comment@v2
