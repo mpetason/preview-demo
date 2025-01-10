@@ -37,7 +37,8 @@ jobs:
           INGRESS_HOST=loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local
 
           # Make sure to recreate if there is an already existing environment
-          vcluster platform create vcluster loft-preview-${{ github.event.pull_request.number }} --project default
+          vcluster platform create vcluster loft-preview-${{ github.event.pull_request.number }} --project default \
+          --template preview-template
 
           # Deploy the application here with an ingress
           helm repo add argo https://argoproj.github.io/argo-helm
@@ -45,7 +46,6 @@ jobs:
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
-                                            --set server.ingress.class=nginx \
                                             --set server.ingress.hosts={$INGRESS_HOST}
 
       - name: add-pr-link
