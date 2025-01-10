@@ -17,7 +17,7 @@ jobs:
         run: vcluster platform login $LOFT_URL --access-key $ACCESS_KEY
       - name: Create PR Virtual Cluster
         env:
-          NAME: pr-${{ github.event.pull_request.number }}-${{ github.sha }}-${{ github.run_id }}
+          NAME: pr-${{ github.event.pull_request.number }}
         run: vcluster platform create vcluster $NAME --project default --template preview-template
       - name: Deploy Application
         run: kubectl apply -Rf ./my-app
