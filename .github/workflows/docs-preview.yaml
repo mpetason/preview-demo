@@ -15,6 +15,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      pull-requests: write
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -42,6 +45,7 @@ jobs:
                                             --create-namespace \
                                             -n argocd \
                                             --set server.ingress.enabled=true \
+                                            --set server.ingress.class=nginx \
                                             --set server.ingress.hosts={$INGRESS_HOST}
 
       - name: add-pr-link
