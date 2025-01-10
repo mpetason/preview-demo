@@ -40,7 +40,7 @@ jobs:
           vcluster platform create vcluster loft-preview-${{ github.event.pull_request.number }} --project default \
             --template preview-template \
             --link "GitHub PR=$PR_LINK" \
-            --link "Preview=https://${{ env.REPO_NAME}}-pr-${{ github.event.pull_request.number }}.${{ secrets.LOFT_DOMAIN }}/" 
+            --link "Preview=https://$loft-preview-${{ github.event.pull_request.number }}.vcluster-demo.local" 
 
           # Deploy the application here with an ingress
           helm repo add argo https://argoproj.github.io/argo-helm
