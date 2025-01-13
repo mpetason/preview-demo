@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: gcr.io/google-samples/node-hello:1.0
+        image: mpetason/nginx-hello:v1
         ports:
         - containerPort: 8080
 ---
