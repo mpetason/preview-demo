@@ -23,7 +23,7 @@ jobs:
       - name: Create PR Virtual Cluster
         env:
           NAME: pr-${{ github.event.pull_request.number }}
-        run: vcluster platform create vcluster $NAME --project default --template preview-template --link "GitHub PR=$PR_LINK"
+        run: vcluster platform create vcluster $NAME --project default --template preview-template --link "GitHub PR=$PR_LINK" --link "Preview=http://app.vcluster-demo.local"
       - name: Check Out Repository Code
         uses: actions/checkout@v4
         with:
