@@ -26,6 +26,8 @@ jobs:
         run: vcluster platform create vcluster $NAME --project default --template preview-template --link "GitHub PR=$PR_LINK"
       - name: Check Out Repository Code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Deploy Application
         run: kubectl apply -Rf ./my-app
       - name: Wait for Deployment
