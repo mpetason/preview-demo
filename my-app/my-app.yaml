@@ -18,7 +18,7 @@ spec:
       - name: my-app
         image: mpetason/nginx-hello:v1
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
